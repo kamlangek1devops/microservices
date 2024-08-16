@@ -66,7 +66,7 @@ pipeline {
                             E:
                             cd E:\\
                             cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
-                            make apply ENV=dev
+                            deploy.bat
                         '''
                     } 
                     else if(params.WORKSPACE == "uat"){
