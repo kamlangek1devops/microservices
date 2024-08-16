@@ -71,18 +71,16 @@ pipeline {
     }
 
     post {
-        always {
-            echo 'Cleaning up...'
-        }
+        // always {
+        //     echo 'Cleaning up...'
+        // }
         success {
-            // Actions that run only if the pipeline succeeds
             echo 'Build succeeded!'
-            bat 'curl "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage?chat_id=-4245520118&text=Deployment is success"'
+            bat 'curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deployment is succeeded"'
         }
         failure {
-            // Actions that run only if the pipeline fails
             echo 'Build failed.'
-            bat 'curl "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage?chat_id=-4245520118&text=Deployment is failed"'
+            bat 'curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deployment is failed"'
         }
     }
 }
