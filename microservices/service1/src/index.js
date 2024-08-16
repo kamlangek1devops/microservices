@@ -8,7 +8,7 @@ app.use(express.json());
 
 // Basic route to test the API
 app.get('/', (req, res) => {
-    res.send('This is API1');
+    res.send('This is api1 version 2.0.1');
 });
 
 // Read all records
