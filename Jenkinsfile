@@ -51,30 +51,30 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    bat ''' 
-                        E:
-                        cd E:\\
-                        cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
-                    '''
+                    // bat ''' 
+                    //     E:
+                    //     cd E:\\
+                    //     cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
+                    // '''
                     if(params.WORKSPACE == "dev"){
                         bat ''' 
                             echo "Deploying application on dev"
                             curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on dev"
-                            make apply ENV=dev
+                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\deploy.bat
                         '''
                     } 
                     else if(params.WORKSPACE == "uat"){
                         bat ''' 
                             echo "Deploying application on uat"
                             curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on uat"
-                            make apply ENV=uat
+                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\deploy.bat
                         '''
                     }
                      else {
                         bat '''
                             echo "Deploying application on prod"
                             curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on prod"
-                            make apply ENV=prod
+                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\deploy.bat
                         '''
                     }
                 }
