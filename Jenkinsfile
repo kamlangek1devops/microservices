@@ -3,6 +3,9 @@ pipeline {
     
     environment {
         DOCKER_CREDENTIALS = credentials('Docker_Hub_Credential')
+
+        TELEGRAM_BOT_TOKEN = '7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8'
+        TELEGRAM_CHAT_ID = '-4245520118'
     }
 
     stages {
@@ -74,10 +77,21 @@ pipeline {
         success {
             // Actions that run only if the pipeline succeeds
             echo 'Build succeeded!'
+            sendTelegramMessage( "Deployment is done.")
         }
         failure {
             // Actions that run only if the pipeline fails
             echo 'Build failed.'
         }
     }
+}
+
+def sendTelegramMessage(String message) {
+    httpRequest(
+        acceptType: 'APPLICATION_JSON',
+        contentType: 'APPLICATION_JSON',
+        httpMode: 'POST',
+        url: "https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage",
+        requestBody: "{\"chat_id\": \"${env.TELEGRAM_CHAT_ID}\", \"text\": \"${message}\"}"
+    )
 }
