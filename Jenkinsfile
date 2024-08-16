@@ -3,6 +3,7 @@ pipeline {
     
     environment {
         DOCKER_CREDENTIALS = credentials('Docker_Hub_Credential')
+        AWS_CREDENTIALS = credentials('AWS_CREDENTIAL')
 
         TELEGRAM_BOT_TOKEN = '7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8'
         TELEGRAM_CHAT_ID = '-4245520118'
@@ -61,7 +62,9 @@ pipeline {
                             curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on dev"
                             
 
-                            aws configure
+                            aws configure set aws_access_key_id %AWS_CREDENTIALS_USR%
+                            aws configure set aws_secret_access_key %AWS_CREDENTIALS_PSW%
+                            aws configure set region us-east-1
                             E:
                             cd E:\\
                             cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
