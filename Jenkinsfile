@@ -55,8 +55,8 @@ pipeline {
                         bat '''
                             echo "Deploying the application..."
                             E:
-                            cd E:\
-                            cd "MSIT(UP)\DevOps\DevOps2\Assessment\2\microservices"
+                            cd E:\\
+                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
                         '''
                     }
                 }
