@@ -55,22 +55,13 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    withCredentials([[
-    $class: 'AmazonWebServicesCredentialsBinding',
-    credentialsId: 'aws-credentials-id'
-]]) {
-    bat 'set AWS_ACCESS_KEY_ID=%AWS_ACCESS_KEY_ID%'
-    bat 'set AWS_SECRET_ACCESS_KEY=%AWS_SECRET_ACCESS_KEY%'
-    bat 'set AWS_SESSION_TOKEN=%AWS_SESSION_TOKEN%'
-    
-}
-
-
                     if(params.WORKSPACE == "dev"){
                         bat ''' 
                             echo "Deploying application on dev"
                             curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on dev"
                             
+
+                            aws configure
                             E:
                             cd E:\\
                             cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
