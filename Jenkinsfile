@@ -21,7 +21,11 @@ pipeline {
                 script {
                     bat '''
                         echo "Building the project on Windows..."
-                        ::docker build -t kamlangek2devops/app1:1.0.2 .
+
+                        E:
+                        cd E:\\
+                        cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices\\microservices
+                        docker build -t kamlangek2devops/app1:3.0.1 service1\\*
                     '''
                 }
             }
@@ -33,11 +37,11 @@ pipeline {
                 //echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
                 bat '''
                     echo "Logging into Docker registry..."
-                    ::echo %DOCKER_CREDENTIALS_USR%
-                    ::docker login -u %DOCKER_CREDENTIALS_USR% -p %DOCKER_CREDENTIALS_PSW%
+                    echo %DOCKER_CREDENTIALS_USR%
+                    docker login -u %DOCKER_CREDENTIALS_USR% -p %DOCKER_CREDENTIALS_PSW%
                                 
-                    ::echo "Pushing Docker image to registry..."
-                    ::docker push kamlangek2devops/app1:1.0.2
+                    echo "Pushing Docker image to registry..."
+                    docker push kamlangek2devops/app1:3.0.1
                 '''
             }
         }
@@ -51,6 +55,17 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
+                    withCredentials([[
+    $class: 'AmazonWebServicesCredentialsBinding',
+    credentialsId: 'aws-credentials-id'
+]]) {
+    bat 'set AWS_ACCESS_KEY_ID=%AWS_ACCESS_KEY_ID%'
+    bat 'set AWS_SECRET_ACCESS_KEY=%AWS_SECRET_ACCESS_KEY%'
+    bat 'set AWS_SESSION_TOKEN=%AWS_SESSION_TOKEN%'
+    
+}
+
+
                     if(params.WORKSPACE == "dev"){
                         bat ''' 
                             echo "Deploying application on dev"
@@ -58,8 +73,8 @@ pipeline {
                             
                             E:
                             cd E:\\
-                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2
-                            deploy.bat
+                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
+                            make apply ENV=dev
                         '''
                     } 
                     else if(params.WORKSPACE == "uat"){
@@ -69,8 +84,8 @@ pipeline {
                             
                             E:
                             cd E:\\
-                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2
-                            deploy.bat
+                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
+                            make apply ENV=uat
                         '''
                     }
                      else {
@@ -80,8 +95,8 @@ pipeline {
                             
                             E:
                             cd E:\\
-                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2
-                            deploy.bat
+                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
+                            make apply ENV=prod
                         '''
                     }
                 }
