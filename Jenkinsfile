@@ -58,7 +58,7 @@ pipeline {
                             
                             E:
                             cd E:\\
-                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
+                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2
                             deploy.bat
                         '''
                     } 
@@ -69,7 +69,7 @@ pipeline {
                             
                             E:
                             cd E:\\
-                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
+                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2
                             deploy.bat
                         '''
                     }
@@ -80,7 +80,7 @@ pipeline {
                             
                             E:
                             cd E:\\
-                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
+                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2
                             deploy.bat
                         '''
                     }
