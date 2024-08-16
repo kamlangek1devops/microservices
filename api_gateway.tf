@@ -1,6 +1,6 @@
 # Create API Gateway
 resource "aws_api_gateway_rest_api" "microservices_rest_api" {
-  name        = "api-gateway-${var.project_name}"
+  name        = "${terraform.workspace}-api_gateway-${var.project_name}"
   description = "api-gateway-lambda"
 }
 

@@ -1,7 +1,7 @@
 Terraform v1.8.5
 on windows_amd64
 + provider registry.terraform.io/hashicorp/archive v2.5.0
-+ provider registry.terraform.io/hashicorp/aws v5.62.0
++ provider registry.terraform.io/hashicorp/aws v5.63.0
 
 Your version of Terraform is out of date! The latest version
 is 1.9.3. You can update by downloading from https://www.terraform.io/downloads.html
