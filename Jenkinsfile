@@ -51,11 +51,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // bat ''' 
-                    //     E:
-                    //     cd E:\\
-                    //     cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
-                    // '''
+                    bat ''' 
+                        E:
+                        cd E:\\
+                        cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
+                    '''
                     if(params.WORKSPACE == "dev"){
                         bat ''' 
                             echo "Deploying application on dev"
