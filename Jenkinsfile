@@ -65,7 +65,7 @@ pipeline {
                             aws configure set region us-east-1
                             E:
                             cd E:\\
-                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
+                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2
                             deploy.bat
                         '''
                     } 
