@@ -27,6 +27,8 @@ pipeline {
                         cd E:\\
                         cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices\\microservices
                         docker build -t kamlangek2devops/app1:3.0.2 service1\\.
+                        docker build -t kamlangek2devops/app2:3.0.2 service2\\.
+                        docker build -t kamlangek2devops/app3:3.0.2 service3\\.
                     '''
                 }
             }
@@ -43,13 +45,9 @@ pipeline {
                                 
                     echo "Pushing Docker image to registry..."
                     docker push kamlangek2devops/app1:3.0.2
+                    docker push kamlangek2devops/app2:3.0.2
+                    docker push kamlangek2devops/app3:3.0.2
                 '''
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
             }
         }
 
@@ -76,6 +74,9 @@ pipeline {
                             echo "Deploying application on uat"
                             curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on uat"
                             
+                            aws configure set aws_access_key_id %AWS_CREDENTIALS_USR%
+                            aws configure set aws_secret_access_key %AWS_CREDENTIALS_PSW%
+                            aws configure set region us-east-1
                             E:
                             cd E:\\
                             cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
@@ -87,6 +88,9 @@ pipeline {
                             echo "Deploying application on prod"
                             curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on prod"
                             
+                            aws configure set aws_access_key_id %AWS_CREDENTIALS_USR%
+                            aws configure set aws_secret_access_key %AWS_CREDENTIALS_PSW%
+                            aws configure set region us-east-1
                             E:
                             cd E:\\
                             cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
