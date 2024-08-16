@@ -59,7 +59,7 @@ pipeline {
                             E:
                             cd E:\\
                             cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
-                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\deploy.bat
+                            cd deploy.bat
                         '''
                     } 
                     else if(params.WORKSPACE == "uat"){
@@ -70,7 +70,7 @@ pipeline {
                             E:
                             cd E:\\
                             cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
-                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\deploy.bat
+                            cd deploy.bat
                         '''
                     }
                      else {
@@ -81,7 +81,7 @@ pipeline {
                             E:
                             cd E:\\
                             cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
-                            cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\deploy.bat
+                            cd deploy.bat
                         '''
                     }
                 }
