@@ -51,8 +51,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    if(params.WORKSPACE == "dev"){
-                        bat ''' echo "Deploying on dev" '''
+                    if(params.WORKSPACE == "${env.TELEGRAM_BOT_TOKEN}"){
+                        bat ' echo Deploying on dev - ${env.TELEGRAM_BOT_TOKEN} '
                     } 
                     else if(params.WORKSPACE == "uat"){
                         bat ''' echo "Deploying on uat" '''
@@ -77,21 +77,12 @@ pipeline {
         success {
             // Actions that run only if the pipeline succeeds
             echo 'Build succeeded!'
-            sendTelegramMessage( "Deployment is done.")
+            bat 'curl "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage?chat_id=-4245520118&text=Deployment is success"'
         }
         failure {
             // Actions that run only if the pipeline fails
             echo 'Build failed.'
+            bat 'curl "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage?chat_id=-4245520118&text=Deployment is failed"'
         }
     }
-}
-
-def sendTelegramMessage(String message) {
-    httpRequest(
-        acceptType: 'APPLICATION_JSON',
-        contentType: 'APPLICATION_JSON',
-        httpMode: 'POST',
-        url: "https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage",
-        requestBody: "{\"chat_id\": \"${env.TELEGRAM_CHAT_ID}\", \"text\": \"${message}\"}"
-    )
 }
