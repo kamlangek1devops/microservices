@@ -50,8 +50,11 @@ pipeline {
                 script {
                     if(params.WORKSPACE == "dev"){
                         bat ''' echo "Deploying on dev" '''
+                    } 
+                    else if(params.WORKSPACE == "uat"){
+                        bat ''' echo "Deploying on uat" '''
                     }
-                    else {
+                     else {
                         bat '''
                             echo "Deploying the application..."
                             E:
