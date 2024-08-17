@@ -17,9 +17,25 @@ pipeline {
             }
         }
 
-        stage('Build Docker') {
+        stage('Build') {
             steps {
                 script {
+                    if(params.WORKSPACE == "dev"){
+                        bat '''
+                            curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on dev"
+                        '''
+                    } 
+                    else if(params.WORKSPACE == "uat"){
+                        bat ''' 
+                            curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on uat"
+                        '''
+                    }
+                     else {
+                        bat '''
+                            curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on prod"
+                        '''
+                    }
+
                     bat '''
                         echo "Building the project on Windows..."
 
@@ -57,7 +73,7 @@ pipeline {
                     if(params.WORKSPACE == "dev"){
                         bat ''' 
                             echo "Deploying application on dev"
-                            curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on dev"
+                            ::curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on dev"
                             
 
                             aws configure set aws_access_key_id %AWS_CREDENTIALS_USR%
@@ -72,7 +88,7 @@ pipeline {
                     else if(params.WORKSPACE == "uat"){
                         bat ''' 
                             echo "Deploying application on uat"
-                            curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on uat"
+                            ::curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on uat"
                             
                             aws configure set aws_access_key_id %AWS_CREDENTIALS_USR%
                             aws configure set aws_secret_access_key %AWS_CREDENTIALS_PSW%
@@ -86,7 +102,7 @@ pipeline {
                      else {
                         bat '''
                             echo "Deploying application on prod"
-                            curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on prod"
+                            ::curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on prod"
                             
                             aws configure set aws_access_key_id %AWS_CREDENTIALS_USR%
                             aws configure set aws_secret_access_key %AWS_CREDENTIALS_PSW%
