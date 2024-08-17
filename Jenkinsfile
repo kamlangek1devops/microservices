@@ -42,7 +42,7 @@ pipeline {
                         E:
                         cd E:\\
                         cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices\\microservices
-                        docker build -t kamlangek2devops/app1:3.0.2 service1\\.
+                        docker build -t kamlangek2devops/app1:3.0.3 service1\\.
                         docker build -t kamlangek2devops/app2:3.0.2 service2\\.
                         docker build -t kamlangek2devops/app3:3.0.2 service3\\.
                     '''
@@ -60,7 +60,7 @@ pipeline {
                     docker login -u %DOCKER_CREDENTIALS_USR% -p %DOCKER_CREDENTIALS_PSW%
                                 
                     echo "Pushing Docker image to registry..."
-                    docker push kamlangek2devops/app1:3.0.2
+                    docker push kamlangek2devops/app1:3.0.3
                     docker push kamlangek2devops/app2:3.0.2
                     docker push kamlangek2devops/app3:3.0.2
                 '''

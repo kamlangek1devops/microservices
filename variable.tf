@@ -47,7 +47,7 @@ variable "images_url" {
   description = "Containner image"
   type = list(string)
   default = [
-    "kamlangek2devops/app1:3.0.2"
+    "kamlangek2devops/app1:3.0.3"
     , "kamlangek2devops/app2:3.0.2"
     , "kamlangek2devops/app3:3.0.2"
   ]
