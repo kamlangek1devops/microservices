@@ -29,7 +29,7 @@ variable "microservices" {
   default = [
     "api1"
     ,"api2"
-    , "api3"
+    #, "api3"
   ]
 }
 
@@ -39,7 +39,7 @@ variable "ports_listener" {
   default = [ 
     8001
     , 8002
-    , 8003 
+    #, 8003 
   ]
 }
 
@@ -49,7 +49,7 @@ variable "images_url" {
   default = [
     "kamlangek2devops/app1:3.0.2"
     , "kamlangek2devops/app2:3.0.2"
-    , "kamlangek2devops/app3:3.0.2"
+    #, "kamlangek2devops/app3:3.0.2"
   ]
 }
 
