@@ -80,7 +80,7 @@ pipeline {
                             E:
                             cd E:\\
                             cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
-                            make apply ENV=uat
+                            deploy_uat.bat
                         '''
                     }
                      else {
@@ -94,7 +94,7 @@ pipeline {
                             E:
                             cd E:\\
                             cd MSIT(UP)\\DevOps\\DevOps2\\Assessment\\2\\microservices
-                            make apply ENV=prod
+                            deploy_prod.bat
                         '''
                     }
                 }
