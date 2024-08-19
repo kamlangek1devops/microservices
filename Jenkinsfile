@@ -4,9 +4,6 @@ pipeline {
     environment {
         DOCKER_CREDENTIALS = credentials('Docker_Hub_Credential')
         AWS_CREDENTIALS = credentials('AWS_CREDENTIAL')
-
-        TELEGRAM_BOT_TOKEN = '7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8'
-        TELEGRAM_CHAT_ID = '-4245520118'
     }
 
     stages {
@@ -22,17 +19,17 @@ pipeline {
                 script {
                     if(params.WORKSPACE == "dev"){
                         bat '''
-                            curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on dev"
+                            curl -X POST "https://api.telegram.org/bot?/sendMessage" -d "chat_id=?" -d "text=Deploying on dev"
                         '''
                     } 
                     else if(params.WORKSPACE == "uat"){
                         bat ''' 
-                            curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on uat"
+                            curl -X POST "https://api.telegram.org/bot?/sendMessage" -d "chat_id=?" -d "text=Deploying on uat"
                         '''
                     }
                      else {
                         bat '''
-                            curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deploying on prod"
+                            curl -X POST "https://api.telegram.org/bot?/sendMessage" -d "chat_id=?" -d "text=Deploying on prod"
                         '''
                     }
 
@@ -120,11 +117,11 @@ pipeline {
         // }
         success {
             echo 'Build succeeded!'
-            bat 'curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deployment is succeeded"'
+            bat 'curl -X POST "https://api.telegram.org/bot?/sendMessage" -d "chat_id=?" -d "text=Deployment is succeeded"'
         }
         failure {
             echo 'Build failed.'
-            bat 'curl -X POST "https://api.telegram.org/bot7266212019:AAHroBm24b6FmgkfQ5Xl8S7IqW4NJMjosS8/sendMessage" -d "chat_id=-4245520118" -d "text=Deployment is failed"'
+            bat 'curl -X POST "https://api.telegram.org/bot?/sendMessage" -d "chat_id=?" -d "text=Deployment is failed"'
         }
     }
 }
